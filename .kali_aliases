@@ -1,0 +1,70 @@
+# KALI #
+
+## nmap
+alias nmap="nmap --reason --open --stats-every 3m --max-retries 1 --max-scan-delay 20 --defeat-rst-ratelimit"
+
+## aircrack-ng
+alias aircrack-ng="aircrack-ng -z"
+
+## airodump-ng 
+alias airodump-ng="airodump-ng --manufacturer --wps --uptime"
+
+## metasploit
+alias msfc="systemctl start postgresql; msfdb start; msfconsole -q \"\$@\""
+alias msfconsole="systemctl start postgresql; msfdb start; msfconsole \"\$@\""
+
+## mana-toolkit
+alias mana-toolkit-start="a2ensite 000-mana-toolkit;a2dissite 000-default; systemctl restart apache2"
+alias mana-toolkit-stop="a2dissite 000-mana-toolkit; a2ensite 000-default; systemctl restart apache2"
+
+## ssh
+alias ssh-start="systemctl restart ssh"
+alias ssh-stop="systemctl stop ssh"
+
+## samba
+alias smb-start="systemctl restart smbd nmbd"
+alias smb-stop="systemctl stop smbd nmbd"
+
+## rdesktop
+alias rdesktop="rdesktop -z -P -g 90% -r disk:local=\"/tmp/\""
+
+## www
+alias wwwroot="cd /var/www/html/"
+
+## ftp
+alias ftproot="cd /var/ftp/"
+
+## tftp
+alias tftproot="cd /var/tftp/"
+
+## smb
+alias smbroot="cd /var/samba/"
+
+## vmware
+alias vmroot="cd /mnt/hgfs/"
+
+## edb
+alias edb="cd /usr/share/exploitdb/platforms/"
+alias edbroot="cd /usr/share/exploitdb/platforms/"
+
+## wordlist
+alias wordlists="cd /usr/share/wordlists/"
+
+## msfvenom
+alias msfvenom-list-all='cat ~/.msf4/msfvenom/all'
+alias msfvenom-list-nops='cat ~/.msf4/msfvenom/nops'
+alias msfvenom-list-payloads='cat ~/.msf4/msfvenom/payloads'
+alias msfvenom-list-encoders='cat ~/.msf4/msfvenom/encoders'
+alias msfvenom-list-formats='cat ~/.msf4/msfvenom/formats'
+alias msfvenom-list-generate='_msfvenom-list-generate'
+function _msfvenom-list-generate {
+  mkdir -p ~/.msf4/msfvenom/
+  msfvenom --list > ~/.msf4/msfvenom/all
+  msfvenom --list nops > ~/.msf4/msfvenom/nops
+  msfvenom --list payloads > ~/.msf4/msfvenom/payloads
+  msfvenom --list encoders > ~/.msf4/msfvenom/encoders
+  msfvenom --help-formats 2> ~/.msf4/msfvenom/formats
+}
+
+# crackmapexec
+alias cme='crackmapexec'

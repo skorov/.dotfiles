@@ -1,0 +1,132 @@
+# GENERIC #
+
+## allows sudo for aliases
+alias='sudo '
+
+## Add grc to common commands
+alias diff='/usr/bin/grc /usr/bin/diff'
+alias dig='/usr/bin/grc /usr/bin/dig'
+alias gcc='/usr/bin/grc /usr/bin/gcc'
+alias ifconfig='/usr/bin/grc /sbin/ifconfig'
+alias mount='/usr/bin/grc /bin/mount'
+alias netstat='/usr/bin/grc /bin/netstat'
+alias ping='/usr/bin/grc /bin/ping'
+alias ps='/usr/bin/grc /bin/ps'
+alias tail='/usr/bin/grc /usr/bin/tail'
+alias traceroute='/usr/bin/grc /usr/sbin/traceroute'
+alias wdiff='/usr/bin/grc /usr/bin/wdiff'
+
+## grep aliases
+alias grep="grep --color=always"
+alias ngrep="grep -n"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+## ping only 5 times
+alias ping="ping -c 5"
+
+## which all
+alias which="which -a"
+
+## tmux attach if exists else new
+alias tmux="tmux attach || tmux new"
+alias tmuxcc="tmux -CC attach || tmux -CC new" # tmux control mode for iTerm2
+
+## screen
+alias screen="screen -xRR"
+
+## Checksums
+alias sha1="openssl sha1"
+alias md5="openssl md5"
+
+## Force create folders
+alias mkdir="mkdir -pv"
+
+## mkdir and cd to it
+function mkcd() { mkdir -p "$@" && cd "$_"; }
+
+## List open ports
+alias ports="netstat -tulanp"
+
+## Get header
+alias header="curl -I"
+
+## Get internal IPs
+ips() { ifconfig | grep "inet " | awk '{ print $2 }' }
+
+## Get external IP address
+alias ipx="curl -s http://ipinfo.io/ip"
+
+## Test DNS Connections
+### DNS - External IP #1
+alias dns1="dig +short @resolver1.opendns.com myip.opendns.com"
+
+### DNS - External IP #2
+alias dns2="dig +short @208.67.222.222 myip.opendns.com"
+
+#### DNS - Check ("#.abc" is Okay)
+alias dns3="dig +short @208.67.220.220 which.opendns.com txt"
+
+## Directory navigation aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+## Extract file, example. "ex package.tar.bz2"
+ex() {
+  if [[ -f $1 ]]; then
+    case $1 in
+      *.tar.bz2) tar xjf $1 ;;
+      *.tar.gz)  tar xzf $1 ;;
+      *.bz2)     bunzip2 $1 ;;
+      *.rar)     rar x $1 ;;
+      *.gz)      gunzip $1  ;;
+      *.tar)     tar xf $1  ;;
+      *.tbz2)    tar xjf $1 ;;
+      *.tgz)     tar xzf $1 ;;
+      *.zip)     unzip $1 ;;
+      *.Z)       uncompress $1 ;;
+      *.7z)      7z x $1 ;;
+      *)         echo $1 cannot be extracted ;;
+    esac
+  else
+    echo $1 is not a valid file
+  fi
+}
+
+## strings
+alias strings="strings -a"
+
+## history
+alias hg="history | grep"
+
+## Network Services
+alias listen="netstat -antp | grep LISTEN"
+
+## Listing
+alias ll="ls -l --block-size=1 --color=auto"
+
+## Update and clean packages
+alias update='apt update -y && apt upgrade -y && apt-get autoremove -y && apt-get autoclean'
+
+## List sizes of folder and files
+alias ducks='du -cks * | sort -rn'
+
+## Start Simple HTTP Server on 8080
+alias http='python -m SimpleHTTPServer 8080'
+
+## Kill the process that is binding to specified port
+portkill () { kill -9 `netstat -ntpl | grep :$1 | tail -1 | awk '{print $7;}' | cut -d/ -f1` }
+
+## Searching
+### Find filenames like
+function f() { find . -iname "*$1*" ${@:2} }
+### Search inside files
+function r() { grep "$1" ${@:2} -R . }
+
+## df human readable
+alias df="df -h"
+
+## du human readable
+alias du="du -h -c"

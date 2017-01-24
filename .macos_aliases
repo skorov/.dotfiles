@@ -1,0 +1,10 @@
+# MACOS #
+
+## List all ports - overwrites generic alias
+alias ports="lsof -iTCP -iUDP -P -n"
+
+## List listening ports
+alias listen="lsof -iTCP -sTCP:LISTEN -iUDP -P -n | grep -v '\*.' | grep -v '\->'"
+
+## Kill the process that is binding to specified port
+portkill () { kill -9 `lsof -i tcp:$1 | tail -1 | awk '{ print $2;}'` }
