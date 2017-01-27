@@ -130,3 +130,6 @@ alias df="df -h"
 
 ## du human readable
 alias du="du -h -c"
+
+## Nudes Seacher 
+alias gogetnudes=' find / -name *sexytape*
