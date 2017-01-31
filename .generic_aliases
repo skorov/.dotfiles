@@ -52,7 +52,7 @@ alias ports="netstat -tulanp"
 alias header="curl -I"
 
 ## Get internal IPs
-ips() { ifconfig | grep "inet " | awk '{ print $2 }' }
+function ips() { ifconfig | grep "inet " | awk '{ print $2 }'; }
 
 ## Get external IP address
 alias ipx="curl -s http://ipinfo.io/ip"
@@ -117,13 +117,13 @@ alias ducks='du -cks * | sort -rn'
 alias http='python -m SimpleHTTPServer 8080'
 
 ## Kill the process that is binding to specified port
-portkill () { kill -9 `netstat -ntpl | grep :$1 | tail -1 | awk '{print $7;}' | cut -d/ -f1` }
+function portkill() { kill -9 `netstat -ntpl | grep :$1 | tail -1 | awk '{print $7;}' | cut -d/ -f1`; }
 
 ## Searching
 ### Find filenames like
-function f() { find . -iname "*$1*" ${@:2} }
+function f() { find . -iname "*$1*" ${@:2}; }
 ### Search inside files
-function r() { grep "$1" ${@:2} -R . }
+function r() { grep "$1" ${@:2} -R .; }
 
 ## df human readable
 alias df="df -h"
