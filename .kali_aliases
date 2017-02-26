@@ -28,6 +28,9 @@ alias smb-stop="systemctl stop smbd nmbd"
 ## rdesktop
 alias rdesktop="rdesktop -z -P -g 90% -r disk:local=\"/tmp/\""
 
+## xfreedrp
+alias xfreerdp="xfreerdp /w:1600 /h:900 /drive:tmp,/tmp +clipboard"
+
 ## www
 alias wwwroot="cd /var/www/html/"
 
