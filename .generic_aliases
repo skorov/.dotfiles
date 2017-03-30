@@ -29,8 +29,8 @@ alias ping="ping -c 5"
 alias which="which -a"
 
 ## tmux attach if exists else new
-alias tmux="tmux attach || tmux new"
-alias tmuxcc="tmux -CC attach || tmux -CC new" # tmux control mode for iTerm2
+alias tmux="/usr/bin/tmux attach || /usr/bin/tmux new"
+alias tmuxcc="/usr/bin/tmux -CC attach || /usr/bin/tmux -CC new" # tmux control mode for iTerm2
 
 ## screen
 alias screen="screen -xRR"
