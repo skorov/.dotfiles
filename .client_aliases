@@ -1,4 +1,4 @@
 # CLIENT / WORKSTATION #
 
 ## iodine dns tunneling - fill in with your details
-# alias dnstun='iodine -f -r -d utun1 {IP_Address} {Domain_Name}'
+# alias dnstun='iodine -f -r -d utun1 {Domain_Name}'
